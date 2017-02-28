@@ -1,0 +1,218 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Typing Tutor</title>
+<style type="text/css">
+#typediv {
+	font-size:30px;
+	position:absolute;
+	top:70%;
+	left:20%;
+	width:80%;
+}
+#textspace {
+	font-family:"courier";
+	font-size:40px;
+	position:absolute;
+	top:20%;
+	left:20%;
+	height:40%;
+	width:80%;
+}
+#typehere{
+	font-family:"courier";
+	font-size:50px;
+	width:80%;
+}
+legend {
+	font-family:"Courier";
+}
+#result {
+	position:absolute;
+	font-size:20px;
+	font-family:"Verdana";
+	top:90%;
+	left:20%;
+}
+#selecttext{
+	position:absolute;
+	width:20%;
+	top:20%;
+	left:0%;
+}
+#selecttext ul li{
+	display:block;
+	font-family:"Verdana";
+	font-size:15px;
+	border-style:normal;
+	height:25px;
+	border-color:black;
+	background-color:white;
+}
+#selecttext ul li:hover, #selecttext ul li .selected{
+	background-color:black;
+	color:white;
+}
+#logo{
+	position:absolute;
+	height:20%;
+	left:5%;
+}
+#title {
+	position:absolute;
+	left:40%;
+	font-weight:900;
+	font-family:"Courier";
+	font-size:50px;
+	
+}
+</style>
+<script>
+var text=["fj fjfj fjjjf jff fjf fjf fjjf fjfjjf jfjjf j fjjf ffj f jfjj ffjf fjf fjfjff jfj fjfjf fjfjfjfjf jfjf fjjff jjjf fj fjjf",
+		  "fjgh fjfjghghfj fjghghg ghhhh ggg hgh g jfhg gj gf jh hj fh gj fj gh hg fjghfjghfjg fhgjfhg fjghgjfhg fjghfjghfjg fhgjfhg",
+		  "fkdjf djfkdjfk djfkdjfk djfkdj jddkjf dkjfkdjfkd dkjfd dkjf kd dkjfdk djfdkjfd dkjfdkj fd dkjfdk djfdkdj dkjfdkfd kjdfkjd", 
+		  "sla; als;als a;lsla; als;als a;ls;a sla;sl a;als; alsal;; al;a; sla;als a;lsl;a;als sla;sla;sla s;la;sla;ls a;sal a;d;sl;",
+		  "alkd; hghadkjk s fhglalsdkfh; asdlkjfkd jhgalks; dlkshgl shga;sdhgka sf;lsahsfl shfl;as dhflasdfk ljashdflgk jasdfhasflfa",
+		  "rufj fjrj ujfrjfu frujfu jrufj jrufjr fjrujfuu ufjr fjrufj fjrufj fjurjfu fjrujfuj fjrufjr fjrujf fjurjfuj fjrujf jfurj f",
+		  "fjuryt tyrujf tjfyrjfu urytjfyturjf furjty fjruty rujfyt tttuuj ffrutjf furjtyf jtufyrj furjtyfurj furjtyfjru furjfryt ru",
+		  "deik ikde ekid keidk ddkiekd kdikedike dkdiekdie ddiieekk dkeiekdi dkeikdi dkeidkei eekddiiekkdd diekd diekdi dkiekd diek",
+		  "slow low sowl losw sowls slwosl sllwos swllls owlslw solwso slwols sowlso sowlso sowls sowls ssoollww sowoslwl sollow wow",
+		  "appq; a;qpp ;apq apqpa; apq;p ap;apq apq;a ppa;qp qqpa; qpa; qp;a q;apq ap;qpa ap;aqqa pp;qap; apq;pp apq;;a pq a;ap qpa;",
+		  "qwertyuiop rio tie woop tipq quetio reor wore pipe type putty quiet out tit pit wit rite tute quite petite woop quetio to",
+		  "vnjn nvjfn vnfjvn vnfjnv vnjfnvjf jjfnn vv jfnn fjvnfjnv fjnvjf vnfjvnf nnjjffvv fjvnfj fjvnfjvnjfnvjf fnvjf fnvjfn fnvjf",
+		  "fvnjb jnbmf jmnvb fjnmv fbmvnmj fbvnfj fnvmbj fjjmvnbb bfmbvbnmjb vnfjbmfnbv fmvnb bnvmf fmvnjfbmb bjmnv fjbmnbmjbfmnb bn",
+		  "sxk, ,xks xks, x,x,sks ks,xk skx s,ksx kxs, xk, ,sxk, ,kx,s x,skx x,sk x,skx, s,xks, x,sk,x x,sk, x,xks, x,xks x,sk,x x,s",
+		  "az.l alz. .az zl. .azl a.zl z.al alazla. azla. zlaz.zla.zl zla.z zla.z zla.z zla.z zla.z zla.z zla.z al.zla.z zla.zla zlz",
+		  "zxcvbnm,. cnb mzx vnx bvcnmx, mznxbc. vbcnxmz, zzz..... z,mxmcn vbcnx. c.mm.n z,c m.n.c. xmb b.nzxc nvxnc, .mznx ... xmcn",
+		  "the quick brown fox jumps over the lazy dog. THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG. tHe QuIcK bRoWn FoX JuMps OvEr tHe LaZy DoG",
+		  
+];
+var char4text=[
+				"f,j",
+				"f,j,g,h",
+				"f,j,k,d",
+				"s,a,l,(;)[semi colon]", 
+				"a,s,d,f,g,h,j,k,l,(;)",
+				"r,u,f,j",
+				"r,u,f,j,t,y",
+				"d,e,i,k",
+				"s,w,l,o",
+				"a,q,(;)[semi colon],p",
+				"q,w,e,r,t,y,u,i,o,p",
+				"f,v,j,n",
+				"f,v,j,n,b,m",
+				"s,x,k,(,)[comma]",
+				"a,z,l,(.)[full stop]",
+				"z,x,c,v,b,n,m,(,),(.)",
+				"All characters"
+			  ]
+var starttime=null;
+var max="";
+var current=0;
+var duration=0;
+var snd = new Audio("data:audio/wav;base64,//uQRAAAAWMSLwUIYAAsYkXgoQwAEaYLWfkWgAI0wWs/ItAAAGDgYtAgAyN+QWaAAihwMWm4G8QQRDiMcCBcH3Cc+CDv/7xA4Tvh9Rz/y8QADBwMWgQAZG/ILNAARQ4GLTcDeIIIhxGOBAuD7hOfBB3/94gcJ3w+o5/5eIAIAAAVwWgQAVQ2ORaIQwEMAJiDg95G4nQL7mQVWI6GwRcfsZAcsKkJvxgxEjzFUgfHoSQ9Qq7KNwqHwuB13MA4a1q/DmBrHgPcmjiGoh//EwC5nGPEmS4RcfkVKOhJf+WOgoxJclFz3kgn//dBA+ya1GhurNn8zb//9NNutNuhz31f////9vt///z+IdAEAAAK4LQIAKobHItEIYCGAExBwe8jcToF9zIKrEdDYIuP2MgOWFSE34wYiR5iqQPj0JIeoVdlG4VD4XA67mAcNa1fhzA1jwHuTRxDUQ//iYBczjHiTJcIuPyKlHQkv/LHQUYkuSi57yQT//uggfZNajQ3Vmz+Zt//+mm3Wm3Q576v////+32///5/EOgAAADVghQAAAAA//uQZAUAB1WI0PZugAAAAAoQwAAAEk3nRd2qAAAAACiDgAAAAAAABCqEEQRLCgwpBGMlJkIz8jKhGvj4k6jzRnqasNKIeoh5gI7BJaC1A1AoNBjJgbyApVS4IDlZgDU5WUAxEKDNmmALHzZp0Fkz1FMTmGFl1FMEyodIavcCAUHDWrKAIA4aa2oCgILEBupZgHvAhEBcZ6joQBxS76AgccrFlczBvKLC0QI2cBoCFvfTDAo7eoOQInqDPBtvrDEZBNYN5xwNwxQRfw8ZQ5wQVLvO8OYU+mHvFLlDh05Mdg7BT6YrRPpCBznMB2r//xKJjyyOh+cImr2/4doscwD6neZjuZR4AgAABYAAAABy1xcdQtxYBYYZdifkUDgzzXaXn98Z0oi9ILU5mBjFANmRwlVJ3/6jYDAmxaiDG3/6xjQQCCKkRb/6kg/wW+kSJ5//rLobkLSiKmqP/0ikJuDaSaSf/6JiLYLEYnW/+kXg1WRVJL/9EmQ1YZIsv/6Qzwy5qk7/+tEU0nkls3/zIUMPKNX/6yZLf+kFgAfgGyLFAUwY//uQZAUABcd5UiNPVXAAAApAAAAAE0VZQKw9ISAAACgAAAAAVQIygIElVrFkBS+Jhi+EAuu+lKAkYUEIsmEAEoMeDmCETMvfSHTGkF5RWH7kz/ESHWPAq/kcCRhqBtMdokPdM7vil7RG98A2sc7zO6ZvTdM7pmOUAZTnJW+NXxqmd41dqJ6mLTXxrPpnV8avaIf5SvL7pndPvPpndJR9Kuu8fePvuiuhorgWjp7Mf/PRjxcFCPDkW31srioCExivv9lcwKEaHsf/7ow2Fl1T/9RkXgEhYElAoCLFtMArxwivDJJ+bR1HTKJdlEoTELCIqgEwVGSQ+hIm0NbK8WXcTEI0UPoa2NbG4y2K00JEWbZavJXkYaqo9CRHS55FcZTjKEk3NKoCYUnSQ0rWxrZbFKbKIhOKPZe1cJKzZSaQrIyULHDZmV5K4xySsDRKWOruanGtjLJXFEmwaIbDLX0hIPBUQPVFVkQkDoUNfSoDgQGKPekoxeGzA4DUvnn4bxzcZrtJyipKfPNy5w+9lnXwgqsiyHNeSVpemw4bWb9psYeq//uQZBoABQt4yMVxYAIAAAkQoAAAHvYpL5m6AAgAACXDAAAAD59jblTirQe9upFsmZbpMudy7Lz1X1DYsxOOSWpfPqNX2WqktK0DMvuGwlbNj44TleLPQ+Gsfb+GOWOKJoIrWb3cIMeeON6lz2umTqMXV8Mj30yWPpjoSa9ujK8SyeJP5y5mOW1D6hvLepeveEAEDo0mgCRClOEgANv3B9a6fikgUSu/DmAMATrGx7nng5p5iimPNZsfQLYB2sDLIkzRKZOHGAaUyDcpFBSLG9MCQALgAIgQs2YunOszLSAyQYPVC2YdGGeHD2dTdJk1pAHGAWDjnkcLKFymS3RQZTInzySoBwMG0QueC3gMsCEYxUqlrcxK6k1LQQcsmyYeQPdC2YfuGPASCBkcVMQQqpVJshui1tkXQJQV0OXGAZMXSOEEBRirXbVRQW7ugq7IM7rPWSZyDlM3IuNEkxzCOJ0ny2ThNkyRai1b6ev//3dzNGzNb//4uAvHT5sURcZCFcuKLhOFs8mLAAEAt4UWAAIABAAAAAB4qbHo0tIjVkUU//uQZAwABfSFz3ZqQAAAAAngwAAAE1HjMp2qAAAAACZDgAAAD5UkTE1UgZEUExqYynN1qZvqIOREEFmBcJQkwdxiFtw0qEOkGYfRDifBui9MQg4QAHAqWtAWHoCxu1Yf4VfWLPIM2mHDFsbQEVGwyqQoQcwnfHeIkNt9YnkiaS1oizycqJrx4KOQjahZxWbcZgztj2c49nKmkId44S71j0c8eV9yDK6uPRzx5X18eDvjvQ6yKo9ZSS6l//8elePK/Lf//IInrOF/FvDoADYAGBMGb7FtErm5MXMlmPAJQVgWta7Zx2go+8xJ0UiCb8LHHdftWyLJE0QIAIsI+UbXu67dZMjmgDGCGl1H+vpF4NSDckSIkk7Vd+sxEhBQMRU8j/12UIRhzSaUdQ+rQU5kGeFxm+hb1oh6pWWmv3uvmReDl0UnvtapVaIzo1jZbf/pD6ElLqSX+rUmOQNpJFa/r+sa4e/pBlAABoAAAAA3CUgShLdGIxsY7AUABPRrgCABdDuQ5GC7DqPQCgbbJUAoRSUj+NIEig0YfyWUho1VBBBA//uQZB4ABZx5zfMakeAAAAmwAAAAF5F3P0w9GtAAACfAAAAAwLhMDmAYWMgVEG1U0FIGCBgXBXAtfMH10000EEEEEECUBYln03TTTdNBDZopopYvrTTdNa325mImNg3TTPV9q3pmY0xoO6bv3r00y+IDGid/9aaaZTGMuj9mpu9Mpio1dXrr5HERTZSmqU36A3CumzN/9Robv/Xx4v9ijkSRSNLQhAWumap82WRSBUqXStV/YcS+XVLnSS+WLDroqArFkMEsAS+eWmrUzrO0oEmE40RlMZ5+ODIkAyKAGUwZ3mVKmcamcJnMW26MRPgUw6j+LkhyHGVGYjSUUKNpuJUQoOIAyDvEyG8S5yfK6dhZc0Tx1KI/gviKL6qvvFs1+bWtaz58uUNnryq6kt5RzOCkPWlVqVX2a/EEBUdU1KrXLf40GoiiFXK///qpoiDXrOgqDR38JB0bw7SoL+ZB9o1RCkQjQ2CBYZKd/+VJxZRRZlqSkKiws0WFxUyCwsKiMy7hUVFhIaCrNQsKkTIsLivwKKigsj8XYlwt/WKi2N4d//uQRCSAAjURNIHpMZBGYiaQPSYyAAABLAAAAAAAACWAAAAApUF/Mg+0aohSIRobBAsMlO//Kk4soosy1JSFRYWaLC4qZBYWFRGZdwqKiwkNBVmoWFSJkWFxX4FFRQWR+LsS4W/rFRb/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////VEFHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU291bmRib3kuZGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAwNGh0dHA6Ly93d3cuc291bmRib3kuZGUAAAAAAAAAACU=");  
+function beep() {
+    snd.play();
+}
+function loadtext(num)
+{
+	FillSelectText();
+	var arr=text[num].split(" ");
+	var divarr="";
+	for(i=0;i<arr.length;i++)
+	{
+		divarr+="<span id='word"+i+"'>"+arr[i]+"</span> ";
+	}
+	divarr+="<span id='word"+i+"'>&nbsp;</span>";
+	max=arr.length;
+	current=0;
+	document.getElementById('textspace').innerHTML=divarr;
+	document.getElementById("typehere").focus();
+}
+function updateCSS()
+{
+	if(starttime==null)
+	{
+		var d=new Date();
+		starttime=(d.getMinutes()*60)+d.getSeconds();
+	}
+	var arr=document.getElementById('typehere').value;
+	//var arr=txt.split(" ");
+	var word="";
+	word="word"+current;
+	if(arr.localeCompare((document.getElementById(word).innerHTML)+" ")==0)
+	{
+		document.getElementById(word).style.color="green";
+		document.getElementById('typehere').value="";
+		current++;
+		d=new Date();
+		duration=(d.getMinutes()*60+d.getSeconds())-starttime;		
+		document.getElementById("result").innerHTML="Your typing speed is "+Math.ceil((current/duration)*60)+" words per minute";
+	}
+	else
+	{
+		document.getElementById(word).style.color="red";
+		if(arr[arr.length-1]==' ')
+			beep();
+	}
+	if(current==max)
+	{
+		alert("Your typing speed is "+Math.ceil((current/duration)*60)+" words per minute");
+		location.reload();
+	}	
+}
+/*function updateCSS()
+{
+	if(starttime==null)
+	{
+		var d=new Date();
+		starttime=d.getSeconds();
+	}
+	var txt=document.getElementById('typehere').value;
+	var arr=txt.split(" ");
+	var word="";
+	for(i=0;i<arr.length;i++)
+	{
+		word="word"+i;
+		if(arr[i].localeCompare(document.getElementById(word).innerHTML)==0)
+		{
+			document.getElementById(word).style.color="green";
+		}
+		else
+		{
+			document.getElementById(word).style.color="red";
+		}
+	}
+	if(i-1==max)
+	{
+		d=new Date();
+		var duration=d.getSeconds()-starttime;
+		alert("Your typing speed is "+Math.ceil((arr.length/duration)*60)+" words per minute");
+	}
+	
+}*/
+function FillSelectText()
+{
+	var text="<ul>";
+	for(i=0;i<char4text.length;i++)
+	{
+		text+=("<li onclick='loadtext("+i+")'>"+char4text[i]+"</li>");
+	}
+	text+="</ul>";
+	document.getElementById("selecttext").innerHTML=text;
+}
+</script>
+</head>
+<body onload="loadtext(0)">
+<div id="title">Typing Tutor</div>
+<img src="TypingTutor_files/typewriter.jpg" id="logo">
+<div id="selecttext"></div>
+<div id="textspace"></div>
+<div id="typediv">
+<form id="typetest" target=".">
+<legend for="typehere">Type above content in the text box below:</legend>
+<input id="typehere" onkeyup="updateCSS()" onkeydown="updateCSS()" type="text">
+</form>
+</div>
+<div id="result"></div>	
+
+</body></html>
